@@ -14,6 +14,7 @@
         "wujunze/support": "^1.0",
         "wujunze/helper": "^1.0",
         "ext-json": "*",
+        "ext-openssl": "*",
         "psr/log": "^1.1",
         "wujunze/http-client": "^1.0"
     },
@@ -26,7 +27,10 @@
     "autoload": {
         "psr-4": {
             "Codemore\\Cmbpay\\": "src/"
-        }
+        },
+        "files": [
+            "src/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
