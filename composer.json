@@ -13,7 +13,9 @@
         "php": "^7.1",
         "wujunze/support": "^1.0",
         "wujunze/helper": "^1.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "psr/log": "^1.1",
+        "wujunze/http-client": "^1.0"
     },
     "require-dev": {
         "wujunze/composer-phpcs-plugin": "^1.1",
