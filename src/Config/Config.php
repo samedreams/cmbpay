@@ -15,32 +15,24 @@ use winwin\support\Attribute;
 
 class Config extends Attribute
 {
-    const VERSION = '1.0.1';
-    const GATEWAY = 'https://b2b.cmbchina.com';
+    const VERSION = '1.0';
+    const SIGN_TYPE = 'SHA-256';
 
     protected $attributes = [
-        'gateway',
         'version',
-        'appid',
-        'secret',
-        'charset',
-        'mch_id',
-        'sign_type',
+        'signType',
     ];
 
     protected $requirements = [
-        'gateway',
         'version',
-        'appid',
-        'secret',
-        'mch_id',
+        'signType',
     ];
 
     public function __construct(array $config)
     {
         parent::__construct(array_merge([
             'version' => self::VERSION,
-            'gateway' => self::GATEWAY,
+            'signType' => self::SIGN_TYPE,
         ], $config));
     }
 }
