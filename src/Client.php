@@ -12,8 +12,9 @@
 namespace Codemore\Cmbpay;
 
 use Codemore\Cmbpay\Core\AbstractAPI;
-use Psr\Http\Message\ServerRequestInterface;
 use Codemore\Cmbpay\Core\Util;
+use Codemore\Cmbpay\Payment\Pay;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Client extends AbstractAPI
 {
@@ -39,5 +40,13 @@ class Client extends AbstractAPI
         $this->request = $request;
 
         return $this;
+    }
+
+    /**
+     * @param  Pay   $pay
+     * @return array
+     */
+    public function pay(Pay $pay): array
+    {
     }
 }
