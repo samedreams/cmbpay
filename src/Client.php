@@ -11,6 +11,33 @@
 
 namespace Codemore\Cmbpay;
 
-class Client
+use Codemore\Cmbpay\Core\AbstractAPI;
+use Psr\Http\Message\ServerRequestInterface;
+use Codemore\Cmbpay\Core\Util;
+
+class Client extends AbstractAPI
 {
+    /**
+     * @var ServerRequestInterface
+     */
+    protected $request;
+
+    /**
+     * @return ServerRequestInterface
+     */
+    public function getRequest()
+    {
+        if ($this->request === null) {
+            $this->request = Util::createRequestFromGlobals();
+        }
+
+        return $this->request;
+    }
+
+    public function setRequest(ServerRequestInterface $request)
+    {
+        $this->request = $request;
+
+        return $this;
+    }
 }
