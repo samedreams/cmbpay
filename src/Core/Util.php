@@ -67,7 +67,7 @@ final class Util
         return filter_var($ip, FILTER_VALIDATE_IP) ?: '127.0.0.1';
     }
 
-    public static function generateSign(array $data, $secret, $method = 'md5')
+    public static function generateSign(array $data, string $secret, string $method = 'sha256'): array
     {
         $data = array_filter($data, function ($val) {
             return isset($val) && $val !== '';
@@ -77,9 +77,36 @@ final class Util
         foreach ($data as $name => $val) {
             $pairs[] = $name.'='.$val;
         }
-        $pairs[] = 'key='.$secret;
+        $pairs[] = $secret;
 
         return strtoupper(call_user_func($method, implode('&', $pairs)));
+    }
+
+    public static function verifySign(array $data, string $secret, string $awaitSignStr): bool
+    {
+        $data = array_filter($data, function ($val) {
+            return isset($val) && $val !== '';
+        });
+        ksort($data);
+        $pairs = [];
+        foreach ($data as $name => $val) {
+            $pairs[] = $name.'='.$val;
+        }
+        $toSignStr = implode('&', $pairs);
+        $signStr = self::generateSign($data, $secret);
+
+        $pem = chunk_split($secret, 64, "\n");
+        $pem = "-----BEGIN PUBLIC KEY-----\n".$pem."-----END PUBLIC KEY-----\n";
+        $posKey = openssl_pkey_get_public($pem);
+        if (empty($posKey) | !is_resource($posKey)) {
+            return false;
+        }
+
+        if (openssl_verify($toSignStr, base64_decode($signStr), $posKey, OPENSSL_ALGO_SHA1)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -104,8 +131,9 @@ final class Util
         );
     }
 
-    private static function marshalHeaders(array $server)
-    {
+    private static function marshalHeaders(
+        array $server
+    ) {
         $headers = [];
         foreach ($server as $key => $value) {
             // Apache prefixes environment variables with REDIRECT_
@@ -138,8 +166,10 @@ final class Util
         return $headers;
     }
 
-    private static function marshalUriFromServer(array $server, array $headers)
-    {
+    private static function marshalUriFromServer(
+        array $server,
+        array $headers
+    ) {
         $uri = new Uri('');
 
         // URI scheme
@@ -188,8 +218,9 @@ final class Util
             ->withQuery($query);
     }
 
-    private static function marshalRequestUri(array $server)
-    {
+    private static function marshalRequestUri(
+        array $server
+    ) {
         // IIS7 with URL Rewrite: make sure we get the unencoded url
         // (double slash problem).
         $iisUrlRewritten = self::get($server, 'IIS_WasUrlRewritten');
