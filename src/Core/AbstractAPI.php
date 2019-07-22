@@ -94,17 +94,12 @@ class AbstractAPI implements LoggerAwareInterface
      */
     protected function request(array $params, $method = 'post', array $options = [], $returnResponse = false)
     {
-        $params = array_merge($params, $this->config->only(['appid', 'charset', 'sign_type', 'version', 'mch_id']));
+        $params = array_merge($params, $this->config->only(['version', 'sign', 'signType', 'reqData', 'dateTime']));
 
-        $params['nonce_str'] = uniqid();
         $params = array_filter($params, function ($val) {
             return isset($val) && $val !== '';
         });
-        $params['sign'] = Util::generateSign($params, $this->config->secret, $this->config->sign_type ?: 'md5');
-
-        $options = array_merge([
-            'body' => XML::build($params),
-        ], $options);
+        $params['sign'] = Util::generateSign($params, $this->config->secret);
 
         $response = $this->getHttp()->request($method, $this->config->gateway, $options);
 
@@ -124,6 +119,6 @@ class AbstractAPI implements LoggerAwareInterface
             $response = $response->getBody();
         }
 
-        return new Collection((array) XML::parse($response));
+        return new Collection((array) \json_decode($response->__toString(), true));
     }
 }
