@@ -30,10 +30,10 @@ class ClientTest extends TestCase
 
         $client = new Client(new Config(
             [
-                'version' => getenv('VERSION', '1.0'),
-                'signType' => getenv('SIGN_TYPE', 'sha256'),
-                'url' => getenv('URL', '/UI/NetPay/DoBusiness.ashx'),
-                'gateway' => getenv('GATEWAY', 'https://b2b.cmbchina.com/CmbBank_B2B'),
+                'version' => \env('VERSION', '1.0'),
+                'signType' => \env('SIGN_TYPE', 'sha256'),
+                'url' => \env('URL', '/UI/NetPay/DoBusiness.ashx'),
+                'gateway' => \env('GATEWAY', 'https://baidu.com'),
                 'secret' => 'ssss',
             ]
         ));
