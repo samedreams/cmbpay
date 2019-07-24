@@ -22,7 +22,9 @@
         "wujunze/composer-phpcs-plugin": "^1.1",
         "codedungeon/phpunit-result-printer": "^0.23",
         "phpunit/phpunit": "^7.5",
-        "overtrue/phplint": "^1.1"
+        "overtrue/phplint": "^1.1",
+        "vlucas/phpdotenv": "^3.4",
+        "monolog/monolog": "^1.24"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +37,10 @@
     "autoload-dev": {
         "psr-4": {
             "Codemore\\Cmbpay\\Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "src/functions.php"
+        ]
     },
     "scripts": {
         "test": [

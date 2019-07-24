@@ -67,7 +67,7 @@ final class Util
         return filter_var($ip, FILTER_VALIDATE_IP) ?: '127.0.0.1';
     }
 
-    public static function generateSign(array $data, string $secret, string $method = 'sha256'): array
+    public static function generateSign(array $data, string $secret, string $method = 'sha256'): string
     {
         $data = array_filter($data, function ($val) {
             return isset($val) && $val !== '';

@@ -9,8 +9,6 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Codemore\Cmbpay;
-
 if (!function_exists('sha256')) {
 
     /**

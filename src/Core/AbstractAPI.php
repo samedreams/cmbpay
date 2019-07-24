@@ -16,7 +16,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use winwin\support\Collection;
-use winwin\support\XML;
 use WuJunze\HttpClient\Http;
 
 class AbstractAPI implements LoggerAwareInterface
@@ -101,7 +100,7 @@ class AbstractAPI implements LoggerAwareInterface
         });
         $params['sign'] = Util::generateSign($params, $this->config->secret);
 
-        $response = $this->getHttp()->request($method, $this->config->gateway, $options);
+        $response = $this->getHttp()->request($method, $this->config->gateway . $this->config->route, $options);
 
         return $returnResponse ? $response : $this->parseResponse($response);
     }

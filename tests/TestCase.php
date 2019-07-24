@@ -11,8 +11,18 @@
 
 namespace Codemore\Cmbpay\Tests;
 
+use Dotenv\Dotenv;
+
 class TestCase extends \PHPUnit\Framework\TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        date_default_timezone_set('Asia/Shanghai');
+        if (file_exists(__DIR__.'/.env')) {
+            (new Dotenv(__DIR__))->load();
+        }
+    }
+
     public function testOne()
     {
         $this->assertTrue(true);

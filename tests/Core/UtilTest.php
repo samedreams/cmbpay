@@ -15,27 +15,19 @@ use Codemore\Cmbpay\Tests\TestCase;
 
 class UtilTest extends TestCase
 {
-    public function testCreateRequestFromGlobals()
-    {
-    }
-
-    public function testGet()
-    {
-    }
-
-    public function testGetServerIp()
-    {
-    }
-
+    /**
+     * @todo  implement testGenerateSign
+     */
     public function testGenerateSign()
     {
+        $this->assertNull(null);
     }
 
-    public function testSnakeCase()
-    {
-    }
-
+    /**
+     * @todo  implement testVerifySign
+     */
     public function testVerifySign()
     {
+        $this->assertNull(null);
     }
 }

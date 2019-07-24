@@ -21,14 +21,16 @@ class Config extends Attribute
     protected $attributes = [
         'version',
         'signType',
-        'url',
-        'gateway',
+        'secret',
+        'route',  // 路由
+        'gateway', // 支付网关 URL
     ];
 
     protected $requirements = [
         'version',
         'signType',
-        'url',
+        'secret',
+        'route',
         'gateway',
     ];
 
