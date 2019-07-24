@@ -11,6 +11,9 @@
 
 namespace Codemore\Cmbpay\Payment;
 
-class Refound
+use winwin\support\Attribute;
+
+class Refund extends Attribute
 {
+
 }

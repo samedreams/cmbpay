@@ -14,6 +14,7 @@ namespace Codemore\Cmbpay;
 use Codemore\Cmbpay\Core\AbstractAPI;
 use Codemore\Cmbpay\Core\Util;
 use Codemore\Cmbpay\Payment\Pay;
+use Codemore\Cmbpay\Payment\Refund;
 use Psr\Http\Message\ServerRequestInterface;
 use winwin\support\Collection;
 
@@ -65,5 +66,10 @@ class Client extends AbstractAPI implements ClientInterface
             'trnAbs',  //交易摘要，简要描述交易的关键信息
             'noticeUrl',  //结果异步通知URL (地址仅支持http 80端口和https 443端口），用于银行异步发送交易结果
         ]), 'post');
+    }
+
+    public function refund(Refund $refund): Collection
+    {
+        // TODO: Implement refund() method.
     }
 }

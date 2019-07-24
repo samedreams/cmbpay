@@ -57,6 +57,8 @@ class ClientTest extends TestCase
         $this->assertNotNull($this->client);
         $this->assertInstanceOf(Client::class, $this->client);
 
-        $this->client->pay(new Pay());
+        $this->client->pay(new Pay([
+            '' => '',
+        ]));
     }
 }

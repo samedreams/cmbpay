@@ -11,6 +11,21 @@
 
 namespace Codemore\Cmbpay;
 
+use Codemore\Cmbpay\Payment\Pay;
+use Codemore\Cmbpay\Payment\Refund;
+use winwin\support\Collection;
+
 interface ClientInterface
 {
+    /**
+     * @param  Pay        $pay
+     * @return Collection
+     */
+    public function pay(Pay $pay): Collection;
+
+    /**
+     * @param  Refund     $refund
+     * @return Collection
+     */
+    public function refund(Refund $refund): Collection;
 }
