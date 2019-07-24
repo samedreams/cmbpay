@@ -21,11 +21,15 @@ class Config extends Attribute
     protected $attributes = [
         'version',
         'signType',
+        'url',
+        'gateway',
     ];
 
     protected $requirements = [
         'version',
         'signType',
+        'url',
+        'gateway',
     ];
 
     public function __construct(array $config)

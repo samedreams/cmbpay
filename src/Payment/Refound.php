@@ -9,11 +9,8 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Codemore\Cmbpay\Constants;
+namespace Codemore\Cmbpay\Payment;
 
-use kuiper\helper\Enum;
-
-class Urls extends Enum
+class Refound
 {
-    const B2B = 'https://b2b.cmbchina.com';
 }
